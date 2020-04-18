@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace logic_api.Data.Migrations.IdentityServer.ConfigurationDb
+namespace LogicApi.Data.Migrations.IdentityServer.ConfigurationDb
 {
     public partial class InitialConfigurationDbMigration : Migration
     {

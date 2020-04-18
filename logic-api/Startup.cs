@@ -9,7 +9,7 @@ using IdentityServer4.Configuration;
 using System;
 using Microsoft.AspNetCore.Http;
 
-namespace logic_api
+namespace LogicApi
 {
     public class Startup
     {

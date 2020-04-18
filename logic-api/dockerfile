@@ -1,6 +1,9 @@
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-alpine AS build-env
 WORKDIR /app
 
+# Explicitly ask for path to be added
+ENV PATH="${PATH}:/root/.dotmet/tools"
+
 # Copy csproj and restore as distinct layers
 COPY *.csproj ./
 RUN dotnet restore logic-api.csproj

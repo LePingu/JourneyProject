@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>logic_api</RootNamespace>
+    <RootNamespace>LogicApi</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
