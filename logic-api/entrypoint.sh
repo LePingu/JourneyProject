@@ -1,12 +1,16 @@
 #!/bin/sh
 
 set -e
-run_cmd="dotnet run --server.urls http://*:80"
+
+until dotnet ef database update -c ConfigurationDbContext; do
+>&2 echo "Configuration db is building up"
+sleep 1
+done
 
 until dotnet ef database update -c PersistedGrantDbContext; do
->&2 echo "SQL Server is starting up"
+>&2 echo "Persisted Grant config is building up"
 sleep 1
 done
 
 >&2 echo "SQL Server is up - executing command"
-exec $run_cmd
+dotnet run ./src/logic-api/logic-api.csproj

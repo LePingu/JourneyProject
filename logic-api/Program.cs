@@ -20,7 +20,7 @@ namespace LogicApi
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseUrls("http://+:80").UseStartup<Startup>();
                 });
     }
 }
