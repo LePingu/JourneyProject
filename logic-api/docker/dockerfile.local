@@ -1,0 +1,31 @@
+# !! FOR LOCAL DEVELOPMENT ONLY !!
+
+# Please do NOT use on its own. Meant for docker-compose connection
+
+# Use alpine build when possible. Light weight and powerful
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-alpine AS build-env
+
+# Copy the project minus obj and bin
+COPY . /app
+
+WORKDIR /app
+
+# Get dotnet to decide which project to restore
+RUN dotnet restore
+
+# Same with build
+RUN dotnet build
+
+# Explicitly ask for path to be added
+ENV PATH="${PATH}:/root/.dotnet/tools"
+
+# Global install of Entity framework core
+RUN dotnet tool install --global dotnet-ef --version 3.1.3
+
+COPY ./entrypoint.sh /app
+
+WORKDIR /app
+
+EXPOSE 80/tcp
+RUN chmod +x ./entrypoint.sh
+CMD /bin/sh ./entrypoint.sh

@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace logic_api
+namespace LogicApi
 {
     public class Program
     {
@@ -20,7 +20,7 @@ namespace logic_api
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseUrls("http://+:80").UseStartup<Startup>();
                 });
     }
 }

@@ -1,0 +1,38 @@
+
+# !!! THIS DOCKER-COMPOSE IS FOR DEVELOPMENT ONLY !!!
+
+# PLEASE DO NOT USE IN PROD
+
+version: '3.4'
+
+networks: 
+  logicapi-dev:
+    driver: "bridge"
+
+services: 
+  logic-api:
+    image: journey-project/logic-api:latest
+    depends_on: 
+     - "usersdb"
+    build:
+      context: ./logic-api/
+      dockerfile: ./docker/dockerfile.local
+    ports: 
+        - "5000:80"
+    networks: 
+      - logicapi-dev
+
+  usersdb:
+    image: postgres:12-alpine
+    ports: 
+      - "32776:5432"
+    volumes: 
+      - db_volume:/var/lib/postgresql/data
+    environment: 
+      POSGRES_USER: "docker"
+      POSTGRES_PASSWORD : "docker"
+      POSGRES_DB: "docker"
+    networks: 
+      - logicapi-dev
+volumes: 
+  db_volume:
